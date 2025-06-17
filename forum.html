@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - Student Psych Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Mindify">Mindify</a>
+            <ul class="nav-links">
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="tests.html">Tests</a></li>
+                <li><a href="signin.html" class="auth-button">Sign In</a></li>
+                <li><a href="signup.html" class="auth-button">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="forum-container">
+        <div class="forum-header">
+            <h2>Student Support Forum</h2>
+            <p>Connect, share, and find support with your peers.</p>
+        </div>
+
+        <div class="new-post-area">
+            <h3>Create a New Post</h3>
+            <input type="text" id="post-title" placeholder="Post Title">
+            <textarea id="post-content" placeholder="Share your thoughts or ask a question..."></textarea>
+            <button id="submit-post-btn">Submit Post</button>
+        </div>
+
+        <div class="forum-posts" id="forum-posts">
+            <div class="post-card">
+                <div class="post-header">
+                    <h3 class="post-title">Dealing with Exam Anxiety</h3>
+                    <span class="post-meta">Posted by Emily (Student) on 2025-06-05</span>
+                </div>
+                <p class="post-content">Hi everyone, I'm really struggling with exam anxiety lately. Does anyone have tips for managing it? Deep breathing exercises help a little, but I'm looking for more.</p>
+                <div class="post-footer">
+                    <span>3 comments</span>
+                </div>
+            </div>
+            <div class="post-card">
+                <div class="post-header">
+                    <h3 class="post-title">How to Stay Motivated During Online Classes</h3>
+                    <span class="post-meta">Posted by David (Student) on 2025-06-03</span>
+                </div>
+                <p class="post-content">It's hard to stay focused when learning remotely. Any strategies you guys use to keep motivated and engaged?</p>
+                <div class="post-footer">
+                    <span>5 comments</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mindify. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

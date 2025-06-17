@@ -1,0 +1,893 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Chibi-fied Palette --- */
+:root {
+    --primary-color: #F8BBD0;      /* Light Pink */
+    --primary-darker: #F06292;     /* Darker Pink for hover */
+    --secondary-color: #81D4FA;    /* Light Blue */
+    --secondary-darker: #29B6F6;   /* Darker Blue for hover */
+    --action-color: #A5D6A7;       /* Light Green */
+    --action-darker: #66BB6A;      /* Darker Green for hover */
+
+    --text-dark: #333333;          /* Dark Gray - Main body text */
+    --text-light: #FFFFFF;         /* White - Text on dark backgrounds */
+    --text-muted: #757575;         /* Medium Gray for subtle text */
+
+    --bg-light: #FFF3E0;           /* Light Yellow - Main page background */
+    --bg-card: #FFFFFF;            /* White for cards/elements */
+    --bg-section: #FCE4EC;         /* Light Pink for sections */
+
+    --border-color: #E0E0E0;       /* Light Gray for borders */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Lighter shadow */
+    --shadow-medium: rgba(0, 0, 0, 0.12); /* More pronounced shadow */
+    --footer-bg: #424242;          /* Dark Gray for footer */
+}
+
+/* --- Global Styles & Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Body text will be Inter */
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    font-size: 1.1em; /* Slightly increased base font size for readability */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dancing Script', cursive; /* Headings will be Dancing Script */
+    font-weight: 700; /* Bolder for impact */
+    line-height: 1.2;
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 0;
+    box-shadow: 0 3px 8px var(--shadow-light);
+    border-radius: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: 'Dancing Script', cursive; /* Logo will be Dancing Script */
+    font-size: 2.2em; /* Slightly larger logo */
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    font-family: 'Inter', sans-serif; /* Navigation links will be Inter */
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500; /* Medium weight for clarity */
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.auth-button {
+    font-family: 'Dancing Script', cursive; /* Auth button will be Dancing Script */
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-button:hover {
+    background-color: var(--secondary-darker);
+    transform: translateY(-2px);
+}
+
+/* --- Buttons (General) --- */
+.btn {
+    font-family: 'Dancing Script', cursive; /* General buttons will be Dancing Script */
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    border: 2px solid var(--primary-color);
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 2px solid var(--text-dark);
+}
+
+.secondary-btn:hover {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* --- Hero Section (Homepage) --- */
+.hero-section {
+    background: linear-gradient(rgba(248, 189, 208, 0.8), rgba(129, 212, 250, 0.8)), /* Pink and Blue overlay */
+                url('https://via.placeholder.com/1500x500/F8BBD0/333333?text=Mindful+Students') no-repeat center center/cover;
+    color: var(--text-dark);
+    text-align: center;
+    padding: 120px 20px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+
+.hero-content h1 {
+    font-size: 4.5em; /* Larger for more impact */
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    /* Font-family inherited from h1 rule */
+}
+
+.hero-content p {
+    font-family: 'Inter', sans-serif; /* Hero paragraph will be Inter */
+    font-size: 1.7em; /* Larger for readability */
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* --- Features Section (Homepage) --- */
+.features-section {
+    padding: 90px 20px;
+    text-align: center;
+    background-color: var(--bg-section);
+    margin-top: -60px;
+    padding-top: 110px;
+    border-radius: 30px;
+}
+
+.features-section h2 {
+    font-size: 3.2em; /* Slightly larger heading */
+    margin-bottom: 70px;
+    /* Font-family inherited from h2 rule */
+    position: relative;
+}
+
+.features-section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: var(--bg-card);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 14px 28px var(--shadow-medium);
+}
+
+.feature-card i {
+    font-size: 4em;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.feature-card h3 {
+    font-family: 'Dancing Script', cursive; /* Feature card headings will be Dancing Script */
+    font-size: 2em; /* Slightly larger heading */
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.feature-card p {
+    font-family: 'Inter', sans-serif; /* Feature card paragraphs will be Inter */
+    font-size: 1.1em;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --- Form Styles (shared for sign up/in) --- */
+.form-container {
+    background-color: var(--bg-card);
+    max-width: 550px;
+    margin: 90px auto;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-medium);
+}
+
+.form-container h2 {
+    /* Font-family inherited from h2 rule */
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 35px;
+    font-size: 2.6em; /* Slightly larger heading */
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-family: 'Inter', sans-serif; /* Labels will be Inter */
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600; /* Semi-bold for labels */
+    color: var(--text-dark);
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    font-family: 'Inter', sans-serif; /* Input text will be Inter */
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(248, 189, 208, 0.4);
+    outline: none;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.form-actions button {
+    font-family: 'Dancing Script', cursive; /* Form button will be Dancing Script */
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: 16px 32px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-actions button:hover {
+    background-color: var(--primary-darker);
+    transform: translateY(-2px);
+}
+
+.form-container p {
+    font-family: 'Inter', sans-serif; /* Form paragraph will be Inter */
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.form-container p a {
+    font-family: 'Inter', sans-serif; /* Form links will be Inter */
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600; /* Semi-bold for links */
+}
+
+.form-container p a:hover {
+    text-decoration: underline;
+    color: var(--secondary-darker);
+}
+
+/* --- Chatbot Page Styles --- */
+.chatbot-container {
+    max-width: 850px;
+    margin: 70px auto;
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-medium);
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.chat-header {
+    font-family: 'Dancing Script', cursive; /* Chat header will be Dancing Script */
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: 20px 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 1.8em; /* Larger chat header */
+    font-weight: 700;
+    text-align: center;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--bg-section);
+}
+
+.message {
+    font-family: 'Inter', sans-serif; /* Chat messages will be Inter */
+    max-width: 75%;
+    padding: 14px 20px;
+    border-radius: 20px;
+    word-wrap: break-word;
+    font-size: 1.1em; /* Larger chat messages */
+    font-weight: 400;
+}
+
+.user-message {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    align-self: flex-end;
+    border-bottom-right-radius: 8px;
+}
+
+.bot-message {
+    background-color: var(--bg-card);
+    color: var(--text-dark);
+    align-self: flex-start;
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: 8px;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 20px 25px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+}
+
+.chat-input-area input {
+    font-family: 'Inter', sans-serif; /* Chat input will be Inter */
+    flex-grow: 1;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 1.1em;
+    margin-right: 15px;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.chat-input-area button {
+    font-family: 'Dancing Script', cursive; /* Chat button will be Dancing Script */
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.chat-input-area button:hover {
+    background-color: var(--primary-darker);
+    transform: translateY(-2px);
+}
+
+/* --- Forum Page Styles --- */
+.forum-container {
+    max-width: 950px;
+    margin: 70px auto;
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-medium);
+    padding: 45px;
+}
+
+.forum-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.forum-header h2 {
+    /* Font-family inherited from h2 rule */
+    font-size: 3.2em; /* Larger heading */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.forum-header p {
+    font-family: 'Inter', sans-serif; /* Forum header paragraph will be Inter */
+    color: var(--text-muted);
+    font-size: 1.2em;
+    max-width: 750px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.new-post-area {
+    background-color: var(--bg-section);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.new-post-area textarea {
+    font-family: 'Inter', sans-serif; /* Textarea will be Inter */
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    min-height: 120px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    resize: vertical;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.new-post-area input[type="text"] {
+    font-family: 'Inter', sans-serif; /* Input will be Inter */
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.new-post-area button {
+    font-family: 'Dancing Script', cursive; /* New post button will be Dancing Script */
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.new-post-area button:hover {
+    background-color: var(--secondary-darker);
+    transform: translateY(-2px);
+}
+
+.forum-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.post-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.post-title {
+    font-family: 'Dancing Script', cursive; /* Post title will be Dancing Script */
+    font-size: 1.8em; /* Larger post title */
+    color: var(--text-dark);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.post-meta {
+    font-family: 'Inter', sans-serif; /* Post meta will be Inter */
+    font-size: 1em;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.post-content {
+    font-family: 'Inter', sans-serif; /* Post content will be Inter */
+    font-size: 1.1em;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.post-footer {
+    font-family: 'Inter', sans-serif; /* Post footer will be Inter */
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1em;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --- Tests Page Styles --- */
+.tests-container {
+    max-width: 950px;
+    margin: 70px auto;
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-medium);
+    padding: 45px;
+}
+
+.tests-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.tests-header h2 {
+    /* Font-family inherited from h2 rule */
+    font-size: 3.2em; /* Larger heading */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.tests-header p {
+    font-family: 'Inter', sans-serif; /* Tests header paragraph will be Inter */
+    color: var(--text-muted);
+    font-size: 1.2em;
+    max-width: 750px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+}
+
+.test-card {
+    background-color: var(--bg-section);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.test-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px var(--shadow-light);
+}
+
+.test-card h3 {
+    font-family: 'Dancing Script', cursive; /* Test card heading will be Dancing Script */
+    font-size: 2em; /* Larger heading */
+    margin-bottom: 22px;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.test-card p {
+    font-family: 'Inter', sans-serif; /* Test card paragraph will be Inter */
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.test-card .btn {
+    font-family: 'Dancing Script', cursive; /* Test card button will be Dancing Script */
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.test-card .btn:hover {
+    background-color: var(--primary-darker);
+}
+
+/* --- Test Page Specific Styles (for individual test pages like stress_test.html) --- */
+.test-page-container {
+    background-color: var(--bg-card);
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 22px var(--shadow-medium);
+}
+
+.test-page-container .test-header h2 {
+    /* Font-family inherited from h2 rule */
+    font-size: 3.2em; /* Larger heading */
+    margin-bottom: 22px;
+    font-weight: 700;
+}
+
+.test-page-container .test-header p {
+    font-family: 'Inter', sans-serif; /* Test header paragraph will be Inter */
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.test-page-container .test-header .disclaimer {
+    font-family: 'Inter', sans-serif; /* Disclaimer will be Inter */
+    font-size: 1.1em; /* Slightly larger disclaimer */
+    color: var(--action-color);
+    margin-top: 30px;
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--bg-section);
+    font-weight: 400;
+}
+
+.test-form .question-group {
+    background-color: var(--bg-section);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 35px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.test-form .question-group .question-text {
+    font-family: 'Inter', sans-serif; /* Question text will be Inter for readability */
+    font-weight: 600; /* Semi-bold for clarity */
+    margin-bottom: 22px;
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+
+.test-form .question-group label {
+    font-family: 'Inter', sans-serif; /* Labels will be Inter */
+    display: block;
+    margin-bottom: 14px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.test-form .question-group input[type="radio"] {
+    margin-right: 14px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+.test-actions {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.test-results {
+    background-color: var(--bg-section);
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 35px;
+    margin-top: 45px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.test-results h3 {
+    /* Font-family inherited from h3 rule */
+    font-size: 2.4em; /* Larger heading */
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.test-results #score-display {
+    font-family: 'Dancing Script', cursive; /* Score display will be Dancing Script */
+    font-size: 3em; /* Larger score for emphasis */
+    font-weight: 700;
+    color: var(--action-color);
+}
+
+.test-results #score-interpretation {
+    font-family: 'Inter', sans-serif; /* Interpretation will be Inter */
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.test-results .disclaimer {
+    font-family: 'Inter', sans-serif; /* Disclaimer will be Inter */
+    font-size: 1.1em;
+    color: var(--text-muted);
+    margin-top: 25px;
+    font-weight: 400;
+}
+
+
+/* --- Footer --- */
+footer {
+    font-family: 'Inter', sans-serif; /* Footer will be Inter */
+    background-color: var(--footer-bg);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 70px;
+    font-size: 1.1em; /* Slightly larger footer text */
+    border-radius: 20px;
+    font-weight: 400;
+}
+
+/* --- Utility Classes --- */
+.text-center {
+    text-align: center;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    .nav-links {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links li {
+        margin: 8px 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5em; /* Adjusted for smaller screens */
+    }
+
+    .hero-content p {
+        font-size: 1.4em; /* Adjusted for smaller screens */
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        margin: 12px 0;
+        width: 85%;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container, .chatbot-container, .forum-container, .tests-container, .test-page-container {
+        margin: 35px 25px;
+        padding: 30px;
+    }
+
+    .chatbot-container {
+        height: 75vh;
+    }
+
+    .chat-messages {
+        gap: 12px;
+    }
+
+    .message {
+        padding: 12px 18px;
+        font-size: 1em; /* Adjusted for smaller screens */
+    }
+
+    .chat-input-area {
+        padding: 18px;
+    }
+
+    .new-post-area, .post-card, .test-card, .question-group, .test-results {
+        padding: 25px;
+    }
+
+    .post-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .post-meta {
+        text-align: left;
+    }
+}
