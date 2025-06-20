@@ -1,3 +1,5 @@
+//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
+
 document.addEventListener('DOMContentLoaded', () => {
   const backendURL = "https://mindify-backend-06la.onrender.com";
 
@@ -6,30 +8,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const sendMessageBtn = document.getElementById('send-message-btn');
   const chatMessages = document.getElementById('chat-messages');
 
-  if (chatInput && sendMessageBtn && chatMessages) {
-    sendMessageBtn.addEventListener('click', () => {
-      const messageText = chatInput.value.trim();
-      if (messageText) {
-        const userMsgDiv = document.createElement('div');
-        userMsgDiv.classList.add('message', 'user-message');
-        userMsgDiv.textContent = messageText;
-        chatMessages.appendChild(userMsgDiv);
-        chatInput.value = '';
+if (chatInput && sendMessageBtn && chatMessages) {
+  sendMessageBtn.addEventListener('click', () => {
+    const messageText = chatInput.value.trim();
+    if (messageText) {
+      const userMsgDiv = document.createElement('div');
+      userMsgDiv.classList.add('message', 'user-message');
+      userMsgDiv.textContent = messageText;
+      chatMessages.appendChild(userMsgDiv);
+      chatInput.value = '';
 
-        setTimeout(() => {
+      // Replaced static bot message with real backend call
+      fetch(`${backendURL}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: messageText })
+      })
+        .then(res => res.json())
+        .then(data => {
           const botMsgDiv = document.createElement('div');
           botMsgDiv.classList.add('message', 'bot-message');
-          botMsgDiv.textContent = "Thank you for your message. I'm an AI assistant. How else can I help you today?";
+          botMsgDiv.textContent = data.reply || "Sorry, I didn't get a response.";
           chatMessages.appendChild(botMsgDiv);
           chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000);
-      }
-    });
+        })
+        .catch(err => {
+          console.error("Chat error:", err);
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('message', 'bot-message');
+          errorDiv.textContent = "There was an error getting a response.";
+          chatMessages.appendChild(errorDiv);
+        });
+    }
+  });
 
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessageBtn.click();
-    });
-  }
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessageBtn.click();
+  });
+}
 
   // --- Forum post submission ---
   const postTitleInput = document.getElementById('post-title');
