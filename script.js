@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Backend Base URL ---
     const backendURL = "https://mindify-backend-06la.onrender.com";
 
-    // --- Chatbot message sending (frontend simulation) ---
+    // --- Chatbot ---
     const chatInput = document.getElementById('chat-input');
     const sendMessageBtn = document.getElementById('send-message-btn');
     const chatMessages = document.getElementById('chat-messages');
@@ -11,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sendMessageBtn.addEventListener('click', () => {
             const messageText = chatInput.value.trim();
             if (messageText) {
-                // Add user message
                 const userMsgDiv = document.createElement('div');
                 userMsgDiv.classList.add('message', 'user-message');
                 userMsgDiv.textContent = messageText;
                 chatMessages.appendChild(userMsgDiv);
                 chatInput.value = '';
 
-                // Simulate bot response
                 setTimeout(() => {
                     const botMsgDiv = document.createElement('div');
                     botMsgDiv.classList.add('message', 'bot-message');
@@ -30,13 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessageBtn.click();
-            }
+            if (e.key === 'Enter') sendMessageBtn.click();
         });
     }
 
-// --- Forum post submission (REAL backend) ---
+    // --- Forum Posts ---
     const postTitleInput = document.getElementById('post-title');
     const postContentTextarea = document.getElementById('post-content');
     const submitPostBtn = document.getElementById('submit-post-btn');
@@ -45,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (submitPostBtn && postTitleInput && postContentTextarea && forumPostsContainer) {
         async function loadPosts() {
             try {
-                const response = await fetch(${backendURL}/posts);
+                const response = await fetch(`${backendURL}/posts`);
                 const posts = await response.json();
                 forumPostsContainer.innerHTML = "";
 
@@ -72,21 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         submitPostBtn.addEventListener('click', async () => {
             const title = postTitleInput.value.trim();
             const content = postContentTextarea.value.trim();
-
             if (!title || !content) {
                 alert('Please enter both a title and content for your post.');
                 return;
             }
 
             const newPost = { title, content };
-
             try {
-                const res = await fetch(${backendURL}/posts, {
+                const res = await fetch(`${backendURL}/posts`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(newPost),
                 });
-
                 if (!res.ok) throw new Error("Failed to submit post.");
                 postTitleInput.value = '';
                 postContentTextarea.value = '';
@@ -99,18 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loadPosts();
     }
-    // --- PSS-10 Test Scoring Logic ---
+
+    // --- PSS-10 Test ---
     const pss10Form = document.getElementById('pss10-test-form');
     if (pss10Form) {
         pss10Form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent default form submission
-
+            e.preventDefault();
             let totalScore = 0;
             const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
-
             let allAnswered = true;
+
             questions.forEach(qName => {
-                const selectedOption = document.querySelector(input[name="${qName}"]:checked);
+                const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
                 if (selectedOption) {
                     totalScore += parseInt(selectedOption.value);
                 } else {
@@ -123,26 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Display score and interpretation
             const scoreDisplay = document.getElementById('score-display');
             const scoreInterpretation = document.getElementById('score-interpretation');
             const testResultsDiv = document.getElementById('test-results');
 
             scoreDisplay.textContent = totalScore;
-            
             let interpretationText = '';
-            if (totalScore >= 0 && totalScore <= 13) {
-                interpretationText = 'Your stress level appears to be low.';
-            } else if (totalScore >= 14 && totalScore <= 26) {
-                interpretationText = 'Your stress level appears to be moderate. Consider exploring stress management techniques.';
-            } else if (totalScore >= 27 && totalScore <= 40) {
-                interpretationText = 'Your stress level appears to be high. It might be beneficial to seek professional support.';
-            } else {
-                interpretationText = 'Could not interpret score. Please ensure all answers are valid.';
-            }
+
+            if (totalScore <= 13) interpretationText = 'Your stress level appears to be low.';
+            else if (totalScore <= 26) interpretationText = 'Your stress level appears to be moderate. Consider exploring stress management techniques.';
+            else interpretationText = 'Your stress level appears to be high. It might be beneficial to seek professional support.';
+
             scoreInterpretation.textContent = interpretationText;
-            testResultsDiv.style.display = 'block'; // Show results
-            testResultsDiv.scrollIntoView({ behavior: 'smooth' }); // Scroll to results
+            testResultsDiv.style.display = 'block';
+            testResultsDiv.scrollIntoView({ behavior: 'smooth' });
         });
     }
 });
