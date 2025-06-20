@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (submitPostBtn && postTitleInput && postContentTextarea && forumPostsContainer) {
         async function loadPosts() {
             try {
-                const response = await fetch(`${backendURL}/posts`);
+                const response = await fetch(${backendURL}/posts);
                 const posts = await response.json();
                 forumPostsContainer.innerHTML = "";
 
