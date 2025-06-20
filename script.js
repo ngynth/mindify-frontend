@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let allAnswered = true;
             questions.forEach(qName => {
-                const selectedOption = document.querySelector(input[name="${qName}"]:checked);
+                const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
                 if (selectedOption) {
                     totalScore += parseInt(select   edOption.value);
                 } else {
