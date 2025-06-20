@@ -1,8 +1,12 @@
-// This file can be used for any interactive elements across the website.
-// For example, handling form submissions (though actual login/signup needs backend),
-// dynamic content loading, animations, etc.
-
 document.addEventListener('DOMContentLoaded', () => {
+    console.log({
+     chatInput, sendMessageBtn, chatMessages,
+    postTitleInput, postContentTextarea, submitPostBtn, forumPostsContainer,
+    pss10Form
+    });
+    // --- Backend Base URL ---
+    const backendURL = "https://mindify-backend-06la.onrender.com";
+
     // --- Chatbot message sending (frontend simulation) ---
     const chatInput = document.getElementById('chat-input');
     const sendMessageBtn = document.getElementById('send-message-btn');
@@ -17,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 userMsgDiv.classList.add('message', 'user-message');
                 userMsgDiv.textContent = messageText;
                 chatMessages.appendChild(userMsgDiv);
-                chatInput.value = ''; // Clear input
+                chatInput.value = '';
 
-                // Simulate bot response (in a real app, this would come from the backend)
+                // Simulate bot response
                 setTimeout(() => {
                     const botMsgDiv = document.createElement('div');
                     botMsgDiv.classList.add('message', 'bot-message');
                     botMsgDiv.textContent = "Thank you for your message. I'm an AI assistant. How else can I help you today?";
                     chatMessages.appendChild(botMsgDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
                 }, 1000);
             }
         });
@@ -37,41 +41,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Forum post submission (frontend simulation) ---
+// --- Forum post submission (REAL backend) ---
     const postTitleInput = document.getElementById('post-title');
     const postContentTextarea = document.getElementById('post-content');
     const submitPostBtn = document.getElementById('submit-post-btn');
     const forumPostsContainer = document.getElementById('forum-posts');
 
     if (submitPostBtn && postTitleInput && postContentTextarea && forumPostsContainer) {
-        submitPostBtn.addEventListener('click', () => {
+        async function loadPosts() {
+            try {
+                const response = await fetch(`${backendURL}/posts`);
+                const posts = await response.json();
+                forumPostsContainer.innerHTML = "";
+
+                posts.forEach(post => {
+                    const postCard = document.createElement("div");
+                    postCard.className = "post-card";
+                    postCard.innerHTML = `
+                        <div class="post-header">
+                            <h3 class="post-title">${post.title}</h3>
+                            <span class="post-meta">Posted by ${post.anonymousId || "Anonymous"} on ${new Date(post.timestamp).toLocaleDateString()}</span>
+                        </div>
+                        <p class="post-content">${post.content}</p>
+                        <div class="post-footer">
+                            <span>${(post.replies || []).length} comments</span>
+                        </div>
+                    `;
+                    forumPostsContainer.appendChild(postCard);
+                });
+            } catch (err) {
+                console.error("Failed to load posts:", err);
+            }
+        }
+
+        submitPostBtn.addEventListener('click', async () => {
             const title = postTitleInput.value.trim();
             const content = postContentTextarea.value.trim();
 
-            if (title && content) {
-                const newPostHTML = `
-                    <div class="post-card">
-                        <div class="post-header">
-                            <h3 class="post-title">${title}</h3>
-                            <span class="post-meta">Posted by Anonymous on ${new Date().toLocaleDateString()}</span>
-                        </div>
-                        <p class="post-content">${content}</p>
-                        <div class="post-footer">
-                            <span>0 comments</span>
-                        </div>
-                    </div>
-                `;
-                // Prepend new post to the top
-                forumPostsContainer.insertAdjacentHTML('afterbegin', newPostHTML);
+            if (!title || !content) {
+                alert('Please enter both a title and content for your post.');
+                return;
+            }
+
+            const newPost = { title, content };
+
+            try {
+                const res = await fetch(`${backendURL}/posts`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newPost),
+                });
+
+                if (!res.ok) throw new Error("Failed to submit post.");
                 postTitleInput.value = '';
                 postContentTextarea.value = '';
-                alert('Post submitted! (Frontend simulation only)');
-            } else {
-                alert('Please enter both a title and content for your post.');
+                loadPosts();
+            } catch (err) {
+                console.error("Error submitting post:", err);
+                alert("Something went wrong while submitting your post.");
             }
         });
-    }
 
+        loadPosts();
+    }
     // --- PSS-10 Test Scoring Logic ---
     const pss10Form = document.getElementById('pss10-test-form');
     if (pss10Form) {
@@ -85,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questions.forEach(qName => {
                 const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
                 if (selectedOption) {
-                    totalScore += parseInt(select   edOption.value);
+                    totalScore += parseInt(selectedOption.value);
                 } else {
                     allAnswered = false;
                 }
