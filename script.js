@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Forum post submission (REAL backend) ---
+// --- Forum post submission (REAL backend) ---
     const postTitleInput = document.getElementById('post-title');
     const postContentTextarea = document.getElementById('post-content');
     const submitPostBtn = document.getElementById('submit-post-btn');
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <p class="post-content">${post.content}</p>
                         <div class="post-footer">
-                            <span>${post.replies.length} comments</span>
+                            <span>${(post.replies || []).length} comments</span>
                         </div>
                     `;
                     forumPostsContainer.appendChild(postCard);
@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loadPosts();
     }
-
     // --- PSS-10 Test Scoring Logic ---
     const pss10Form = document.getElementById('pss10-test-form');
     if (pss10Form) {
