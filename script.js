@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const sendMessageBtn = document.getElementById('send-message-btn');
     const chatMessages = document.getElementById('chat-messages');
-    const backendURL = "https://mindify-backend-06la.onrender.com";
+
     if (sendMessageBtn && chatInput && chatMessages) {
         sendMessageBtn.addEventListener('click', () => {
             const messageText = chatInput.value.trim();
