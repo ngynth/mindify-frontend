@@ -72,14 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
         submitPostBtn.addEventListener('click', async () => {
             const title = postTitleInput.value.trim();
             const content = postContentTextarea.value.trim();
-            const anonymousId = "Guest_" + Math.floor(Math.random() * 10000);
 
             if (!title || !content) {
                 alert('Please enter both a title and content for your post.');
                 return;
             }
 
-            const newPost = { title, content, anonymousId };
+            const newPost = { title, content };
 
             try {
                 const res = await fetch(${backendURL}/posts, {
@@ -104,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const pss10Form = document.getElementById('pss10-test-form');
     if (pss10Form) {
         pss10Form.addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
 
             let totalScore = 0;
             const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
-            let allAnswered = true;
 
+            let allAnswered = true;
             questions.forEach(qName => {
                 const selectedOption = document.querySelector(input[name="${qName}"]:checked);
                 if (selectedOption) {
@@ -124,26 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Display score and interpretation
             const scoreDisplay = document.getElementById('score-display');
             const scoreInterpretation = document.getElementById('score-interpretation');
             const testResultsDiv = document.getElementById('test-results');
 
             scoreDisplay.textContent = totalScore;
-
+            
             let interpretationText = '';
-            if (totalScore <= 13) {
+            if (totalScore >= 0 && totalScore <= 13) {
                 interpretationText = 'Your stress level appears to be low.';
-            } else if (totalScore <= 26) {
+            } else if (totalScore >= 14 && totalScore <= 26) {
                 interpretationText = 'Your stress level appears to be moderate. Consider exploring stress management techniques.';
-            } else if (totalScore <= 40) {
+            } else if (totalScore >= 27 && totalScore <= 40) {
                 interpretationText = 'Your stress level appears to be high. It might be beneficial to seek professional support.';
             } else {
                 interpretationText = 'Could not interpret score. Please ensure all answers are valid.';
             }
-
             scoreInterpretation.textContent = interpretationText;
-            testResultsDiv.style.display = 'block';
-            testResultsDiv.scrollIntoView({ behavior: 'smooth' });
+            testResultsDiv.style.display = 'block'; // Show results
+            testResultsDiv.scrollIntoView({ behavior: 'smooth' }); // Scroll to results
         });
     }
 });
